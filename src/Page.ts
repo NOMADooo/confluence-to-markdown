@@ -59,7 +59,10 @@ export class Page {
   }
 
   getHeading() {
-    const title = this.content.find('title').text();
+    // Select only the <title> tag that is a direct child of the <head> tag
+    const titleElement = this.content.find("head > title");
+    // Ensure only one title is found, and get its text, then trim
+    const title = titleElement.first().text().trim();
     if (this.fileName === 'index.html') {
       return title;
     } else {
